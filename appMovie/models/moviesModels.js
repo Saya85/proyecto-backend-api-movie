@@ -1,6 +1,11 @@
+import fetch from 'node-fetch';
+
+let Films = fetch('https://api.themoviedb.org/3/movie/popular?api_key=cea68b520beecac6718820e4ac576c3a&language=es-ES')
+.then(response => response.json())
+.then(data => console.log(data));
 
 
-let Films = // pagina de api movies   const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=cea68b520beecac6718820e4ac576c3a&language=es-ES&page=${numPaginaBase}`);
+// pagina de api movies   const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=cea68b520beecac6718820e4ac576c3a&language=es-ES&page=${numPaginaBase}`);
 
 
 

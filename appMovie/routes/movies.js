@@ -47,23 +47,6 @@ router.get('/actores/:actors', (req, res) => {
 
 
 
-
-router.put('/genero/:genre', (req, res) => {
-
-    let movie = {id, title};
-    res.json(movie);
-});
-
-//Metodo DELETE
-router.delete('/:id', (req, res) => {
-    const {id} = req.params;
-    let movieList = movies.filter(movie => movie.id != id);
-    movies = movieList;
-    res.send(`Registro ${id} eliminado`);
-});
-
-
-
 module.exports = router;
 
 
