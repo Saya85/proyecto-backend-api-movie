@@ -1,22 +1,32 @@
-import fetch from 'node-fetch';
+axios = require('axios')
 
-let Films = fetch('https://api.themoviedb.org/3/movie/popular?api_key=cea68b520beecac6718820e4ac576c3a&language=es-ES')
-.then(response => response.json())
-.then(data => console.log(data));
+//let Films = axios.get('https://api.themoviedb.org/3/movie/popular?api_key=cea68b520beecac6718820e4ac576c3a&language=es-ES')
 
+ let getFilms = () => {
+    axios.get('https://api.themoviedb.org/3/movie/popular?api_key=cea68b520beecac6718820e4ac576c3a&language=es-ES').then(res => {
+        // console.log(res);
+
+        const peliculas = res.data.results;
+        //return peliculas
+      //
+    });
+}
+ 
+let Films = "films";
 
 // pagina de api movies   const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=cea68b520beecac6718820e4ac576c3a&language=es-ES&page=${numPaginaBase}`);
 
 
 
 // todas las pelis
-Films.allMovies = ()=>{
-    return Films;
-};
+//Films.allMovies = ()=>{
+    //return Films;
+   // console.log(Films)
+//};
 
 //devolver las pelis por id
 
-
+/* 
 Films.movieID = (id)=>{
     return Films[id-1];
 };
@@ -43,7 +53,7 @@ Films.getActors = (paramactors)=>{
 };
 
 
-
+ */
 module.exports = Films;
 
 

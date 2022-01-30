@@ -8,18 +8,25 @@ const moviesModel = require('../models/moviesModels');
 // const app = express();
 
 //Add datos de prueba
-let movies = [
-    {id:1, title: "Soy Leyenda"},
-    {id:2, title: "El Risas"},
-    {id:3, title: "Yo Robot"},
-    {id:4, title: "El Hoyo"}
-];
 
 
 //ENDPOINTS CRUD-------------------------------------------------------------------------------
 //Metodo GET - READ ALL
 router.get('/', (req, res) => {
-    res.json(moviesModel.allMovies());
+    
+    axios.get('https://api.themoviedb.org/3/movie/popular?api_key=cea68b520beecac6718820e4ac576c3a&language=es-ES').then(response => {
+        // console.log(res);
+
+        const peliculas = response.data.results;
+       res.json(peliculas);
+         //return peliculas
+      /*   peliculas.forEach(pelicula => {
+            console.log(pelicula)
+        });  */
+    });
+
+   
+
 });
 
 //Metodo GET - READ por ID
