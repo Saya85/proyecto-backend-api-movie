@@ -21,7 +21,7 @@ router.post('/pedido', async (req, res, next) => {
     const userExists = await User.findOne({ email: email});
     if (userExists !== null) { return res.status(401).json({message: 'email incorrecto'}); }
     const userMovie = await pedidos.findOne({ email: email});
-    if (userMovie !== 0) { return res.status(401).json({message: 'el usuario ya alquilo una pelicula'}); }
+    if (userMovie === 1) { return res.status(401).json({message: 'el usuario ya alquilo una pelicula'}); }
 
     // Guardo los datos
 
