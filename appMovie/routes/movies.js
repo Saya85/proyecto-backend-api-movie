@@ -12,7 +12,7 @@ const moviesModel = require('../models/moviesModels');
 
 //ENDPOINTS CRUD-------------------------------------------------------------------------------
 //Metodo GET - READ ALL
-router.get('/', (req, res) => {
+/* router.get('/', (req, res) => {
     
     axios.get('https://api.themoviedb.org/3/movie/popular?api_key=cea68b520beecac6718820e4ac576c3a&language=es-ES').then(response => {
         // console.log(res);
@@ -22,10 +22,13 @@ router.get('/', (req, res) => {
          //return peliculas
       /*   peliculas.forEach(pelicula => {
             console.log(pelicula)
-        });  */
+        });  
     });
+ */
 
+router.get('/', (req, res) => {
    
+   res.json(all)
 
 });
 
