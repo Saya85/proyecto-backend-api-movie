@@ -73,17 +73,6 @@ router.get('/logout', auth, async (req, res, next) => {
 }); 
  
 
-// router.put('/change-password/:id', auth, async (req, res, next) => {
-//   // Only users who has admin role;
-//   res.status(501).json({});
-// });
-
-// router.put('/change-profile/:id', auth, async (req, res, next) => {
-//   // Only users who has admin role;
-//   res.status(501).json({});
-// });
-
-
 router.get('/create/', async function(req, res) {
   
   const usersData = [{

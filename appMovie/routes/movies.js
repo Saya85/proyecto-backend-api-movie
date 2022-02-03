@@ -5,27 +5,6 @@ var express = require('express');
 var router = express.Router();
 const axios = require('axios');
 const auth = require('../middlewares/auth');
-// const morgan = require('morgan');
-// const app = express();
-
-//Add datos de prueba
-
-
-//ENDPOINTS CRUD-------------------------------------------------------------------------------
-//Metodo GET - READ ALL
-/* router.get('/', (req, res) => {
-    
-    axios.get('https://api.themoviedb.org/3/movie/popular?api_key=cea68b520beecac6718820e4ac576c3a&language=es-ES').then(response => {
-        // console.log(res);
-
-        const peliculas = response.data.results;
-       res.json(peliculas);
-         //return peliculas
-      /*   peliculas.forEach(pelicula => {
-            console.log(pelicula)
-        });  
-    });
- */
 
 router.get('/', auth, async function(req, res) {
    const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=cea68b520beecac6718820e4ac576c3a&language=es-ES'); 
