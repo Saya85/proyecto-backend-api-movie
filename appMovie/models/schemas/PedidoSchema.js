@@ -21,8 +21,4 @@ const PedidosSchema = new mongoose.Schema({
 });
 
 
-
-
-
-
 module.exports = PedidosSchema;

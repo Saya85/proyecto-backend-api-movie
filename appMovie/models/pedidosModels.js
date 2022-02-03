@@ -1,14 +1,6 @@
-const PedidosSchema = require('./schemas/Pedidos');
+const PedidosSchema = require('./schemas/PedidoSchema');
 const mongoose = require('mongoose');
-const pedidos = mongoose.model('pedidosModels', PedidosSchema);
+const pedidosModels = mongoose.model('pedido', PedidosSchema);
 
-module.exports = pedidos;
+module.exports = pedidosModels;
 
-// let User = {
-//     name: {
-//         first: 'Axel',
-//         last: 'Urizar'
-//     },
-//     email: 'axelurizarmartin@gmail.com',
-//     password: '123456'
-// }
