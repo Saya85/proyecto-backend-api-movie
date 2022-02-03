@@ -1,5 +1,10 @@
-axios = require('axios')
+const mongoose = require('mongoose');
+const movieSchema = require('./schemas/movieSchema');
+const moviesModels = mongoose.model('movies', movieSchema);
 
+
+module.exports = moviesModels;
+/* 
 let Films = [
     {"id":1,"title":"Accident","genre":"Crime|Drama","actors":"Leonardo de Caprio"},
     {"id":2,"title":"Easy Money (Snabba Cash)","genre":"Action|Thriller","actors":"Richar Gere"},
@@ -70,6 +75,6 @@ Films.getActors = (paramactors)=>{
  
 module.exports = Films;
 
-
+ */
 
 
