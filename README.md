@@ -43,25 +43,25 @@ cree 3 modulos: UserModels, moviesModels y PedidosModels
 ### Pruevas ejecucion.
 
 - crear usuario (POST:/users/register)
-(appMovie/public/images/registro-usuario.png)
+![registro usuario](appMovie/public/images/registro-usuario.png)
 
 - login usuario (POST:/users/login)
-(appMovie/public/images/login-usuario.png)
+![login usuario](appMovie/public/images/login-usuario.png)
 
 - usuario por id (POST:/users/:id)
-(appMovie/public/images/id-perfil.png)
+![id usuario](appMovie/public/images/id-perfil.png)
 
 - delate usuario (POST:/users/:id)
-(appMovie/public/images/eliminacionuser.png)
+![borrar usuario](appMovie/public/images/eliminacionuser.png)
 
 - Mostrar peliculas (GET:/movies)
-(appMovie/public/images/peliculas.png)
+![todas las pelis](appMovie/public/images/peliculas.png)
 
 - Mostrar pelicula por id (GET:/movies/id/:id)
-(appMovie/public/images/id-pelicula.png)
+![id pelis](appMovie/public/images/id-pelicula.png)
 
 - Mostrar pelicula por titulo (GET:/movies/titulo/:title)
-(appMovie/public/images/por-titulo.png)
+![pelis titulo](appMovie/public/images/por-titulo.png)
 
 
 ## Instalación 🔧
