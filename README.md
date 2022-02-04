@@ -32,14 +32,36 @@ Tecnologias utilizadas
 primero hay que  instalar las dependencias con yarn install
 
 [modulos]
-cree 3 modulos: User, moviesModels y PedidosModels
+cree 3 modulos: UserModels, moviesModels y PedidosModels
 
 [moviesModels] hay la api de pelicuals creada mas las funciones que despues las mada la ruta movies.js donde alli ejecutara todas las estancias indicadas.
 
-[User] creo las funciones que son para los usuarios y subirlas al bakend en users.js (este modulo fue contribucion de nuestro tutor)
+[UserModels] creo las funciones que son para los usuarios y subirlas al bakend en users.js (este modulo fue contribucion de nuestro tutor)
 
 [PedidosModels] en este modulo hacemos las funciones de los pedidos y lo mandamos al pedidos.js para que lo suba al backend
 
+### Pruevas ejecucion.
+
+- crear usuario (POST:/users/register)
+(appMovie/public/images/registro-usuario.png)
+
+- login usuario (POST:/users/login)
+(appMovie/public/images/login-usuario.png)
+
+- usuario por id (POST:/users/:id)
+(appMovie/public/images/id-perfil.png)
+
+- delate usuario (POST:/users/:id)
+(appMovie/public/images/eliminacionuser.png)
+
+- Mostrar peliculas (GET:/movies)
+(appMovie/public/images/peliculas.png)
+
+- Mostrar pelicula por id (GET:/movies/id/:id)
+(appMovie/public/images/id-pelicula.png)
+
+- Mostrar pelicula por titulo (GET:/movies/titulo/:title)
+(appMovie/public/images/por-titulo.png)
 
 
 ## Instalación 🔧
@@ -49,13 +71,9 @@ Para descargar el repositorio a tu maquina local, obten la URL del repositorio y
 ```
 git clone "URL_REPOSITORIO"
 ```
+entramos en el repositorio y hacemos un *npm install* en la terminal de bash 
+``` 
 
-### Pre-requisitos 📋
-
-```
- - Instala un IDE.
- - Instala git en tu sistema operativo.
-```
 &nbsp;
 
 
