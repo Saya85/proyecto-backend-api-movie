@@ -1,12 +1,13 @@
 var express = require('express');
-var User = require('../models/UserModels')
 var router = express.Router();
+var UserModel = require('../models/UserModels');
+
 
 const auth = require('../middlewares/auth');
 
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
-  const users = await User.find({});//{role: 'Admin'}
+  const users = await UserModel.find({});//{role: 'Admin'}
   //console.log(users)
   let result = (users.length > 0)? users: [{message: "No hay usuarios que mostrar."}];
   res.json(result);
@@ -23,7 +24,7 @@ router.post('/register', async (req, res, next) => {
   const {email, name, password, role} = {...req.body};
   // Valido los datos recibidos. Si son incorrectos, devuelvo ko
   // Valido que el correo no existe
-  const userExists = await User.findOne({ email: email});
+  const userExists = await UserModel.findOne({ email: email});
   if (userExists !== null) { return res.status(401).json({message: 'email incorrecto'}); }
 
   // Valido que el password tiene el formato correcto (minlength: 6)
@@ -32,11 +33,11 @@ router.post('/register', async (req, res, next) => {
   // Guardo los datos
  
   if (role === 'admin') {
-    let user = await User.create({name: name, email: email, password: password, address:[], role: "admin"})
+    let user = await UserModel.create({name: name, email: email, password: password, address:[], role: "admin"})
     if( user === null) return res.status(500).json({message: 'Internal error. Please, let you contact with the administrator'})
     res.status(204).json({message: 'User created!!!!'});
   } else {
-    const user = await User.create({name: name, email: email, password: password, address:[]})
+    const user = await UserModel.create({name: name, email: email, password: password, address:[]})
     if( user === null) return res.status(500).json({message: 'Internal error. Please, let you contact with the administrator'})
     res.status(204).json({message: 'User created!!!!'});
     }
@@ -48,7 +49,7 @@ router.post('/login', async (req, res) => {
   //Login a registered user
   try {
     const { email, password } = req.body
-    const user = await User.findByCredentials(email, password)
+    const user = await UserModel.findByCredentials(email, password)
     if (!user) {
        return res.status(401).send({error: 'Login failed! Check authentication credentials'})
     }
@@ -61,8 +62,8 @@ router.post('/login', async (req, res) => {
 
 router.delete('/:id', auth, async (req, res, next) => {
   try {
-    const result = await User.remove({_id: req.params.id});
-    (result > 0) ? res.status(204).json({message: "El usuario ha sido eliminado correctamente"}): res.status(200).json({});
+    const result = await UserModel.remove({_id: req.params.id});
+    (result > 0) ? res.status(204).json({message: "El usuario ha sido eliminado correctamente"}) : res.status(200).json({});
   } catch (e) {
     res.status(500).json({message: "No se pudo hacer la eliminacion."});
   }
@@ -95,7 +96,7 @@ router.get('/create/', async function(req, res) {
       ],
       tokens:[]
     }]
-  const user = await User.insertMany(usersData);//{role: 'Admin'}
+  const user = await UserModel.insertMany(usersData);//{role: 'Admin'}
   console.log(user);
   res.json({});
 });

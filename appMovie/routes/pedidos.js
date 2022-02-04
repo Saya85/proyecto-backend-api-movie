@@ -1,4 +1,4 @@
-const { response } = require('express');
+
 var express = require('express');
 var moviesModels = require('../models/moviesModels')
 var pedidosModels = require('../models/pedidosModels');
@@ -12,8 +12,8 @@ router.post('/pedido', auth, async function(req, res, next) {
 
     const {idUser, idMovie} = req.body;
     try{
-      const movie = await moviesModels.findById(idMovie);
-      let resultMovie = (movie !== null) ? movie: {};
+      const movie = await axios.get(`https://api.themoviedb.org/3/movie/${idMovie}?api_key=cea68b520beecac6718820e4ac576c3a`);
+      let resultMovie = (movie.data !== null) ? movie.data: {};
       const user = await UserModels.findById(idUser);
       let resultUser = (user !== null) ? user: {};
       if (Object.keys(resultUser).length === 0 || Object.keys(resultMovie).length === 0){
