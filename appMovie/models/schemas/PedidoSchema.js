@@ -1,24 +1,27 @@
 const mongoose = require('mongoose');
 // const User = require('../User');
 const PedidosSchema = new mongoose.Schema({
-    email: {
+    idUser: {
         type: String,
         required: true,
-        unique: true,
         },
-    movieID: {
+    idMovie: {
         type: String,
         required: true,
     },
     fechaEntrega: {
-        type: Date,
+        type: String,
         required: true
     },
     fechaDevolucion: {
-        type: Date,
+        type: String,
         required: true
     },
 });
-
+PedidosSchema.methods.toJSON = function () {
+    const pedido = this.toObject();
+    delete pedido.__v;
+    return pedido;
+  }
 
 module.exports = PedidosSchema;

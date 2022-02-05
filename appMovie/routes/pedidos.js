@@ -1,14 +1,14 @@
 
 var express = require('express');
-var moviesModels = require('../models/moviesModels')
+var router = express.Router();
 var pedidosModels = require('../models/pedidosModels');
 var UserModels = require('../models/UserModels');
-var router = express.Router();
+const axios = require('axios');
 const auth = require('../middlewares/auth')
 
 //Get pedidos
 
-router.post('/pedido', auth, async function(req, res, next) {
+router.post('/', auth, async function(req, res, next) {
 
     const {idUser, idMovie} = req.body;
     try{
@@ -23,7 +23,6 @@ router.post('/pedido', auth, async function(req, res, next) {
     let fechaDevolucion = new Date(fechaEntrega);   
     fechaDevolucion.setDate(fechaDevolucion.getDate()+2);
   
-
     // Guardo los datos
 
     const pedido = await pedidosModels.create({idUser: idUser, idMovie: idMovie, fechaEntrega: fechaEntrega, fechaDevolucion: fechaDevolucion})
