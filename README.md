@@ -3,17 +3,15 @@ proyecto de api movies con backend
 
 &nbsp;
 
-
-
 [Repositorio](https://github.com/Saya85/proyecto-backend-api-movie.git)
 
 
 ## Tecnologias y recursos
 ***
 Tecnologias utilizadas 
-* [MongoDB](https://cloud.mongodb.com/)
-* [Postman](https://www.postman.com/downloads/)
-* [api movie creada](https://www.mockaroo.com/)
+* [MongoDB](https://cloud.mongodb.com/)(Base de Datos)
+* [Postman](https://www.postman.com/downloads/) 
+* [api](https://api.themoviedb.org/3/movie/popular?api_key=cea68b520beecac6718820e4ac576c3a)
 * [Java-Script](Json)
 * [express](~4.16.1)
 * [bcrypt](^5.0.1) 
@@ -63,6 +61,8 @@ cree 3 modulos: UserModels, moviesModels y PedidosModels
 - Mostrar pelicula por titulo (GET:/movies/titulo/:title)
 ![pelis titulo](appMovie/public/images/por-titulo.png)
 
+- Mostrar pelicula por titulo (GET:/pedido)
+![pedido peli](appMovie/public/images/pedido.png)
 
 ## Instalación 🔧
 ***
@@ -87,7 +87,4 @@ entramos en el repositorio y hacemos un *npm install* en la terminal de bash
 ## Licencia 📄
 
 Este proyecto está bajo Licencia.
-&nbsp;
 
-## aviso 
-seccion de pedidos no funciona como deberia
