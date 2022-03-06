@@ -21,7 +21,7 @@ router.get('/:id', auth, async function(req, res) {
 
 router.post('/register', async (req, res, next) => {
   // recibo los datos por bodi
-  const {email, name, password, role} = {...req.body};
+  const { name, email, password} = req.body;
   // Valido los datos recibidos. Si son incorrectos, devuelvo ko
   // Valido que el correo no existe
   const userExists = await UserModel.findOne({ email: email});
@@ -32,15 +32,15 @@ router.post('/register', async (req, res, next) => {
     
   // Guardo los datos
  
-  if (role === 'admin') {
-    let user = await UserModel.create({name: name, email: email, password: password, address:[], role: "admin"})
+  /*if  (role === 'admin') {
+    let user = await UserModel.create({name: name, email: email, password: password,  role: "admin" })
     if( user === null) return res.status(500).json({message: 'Internal error. Please, let you contact with the administrator'})
     res.status(204).json({message: 'User created!!!!'});
-  } else {
-    const user = await UserModel.create({name: name, email: email, password: password, address:[]})
+  } else {*/ 
+    const user = await UserModel.create({name: name, email: email, password: password,})
     if( user === null) return res.status(500).json({message: 'Internal error. Please, let you contact with the administrator'})
     res.status(204).json({message: 'User created!!!!'});
-    }
+    //}
      // Respondo ok o ko
   });
  
@@ -74,7 +74,7 @@ router.get('/logout', auth, async (req, res, next) => {
 }); 
  
 
-router.get('/create/', async function(req, res) {
+/* router.get('/create/', async function(req, res) {
   
   const usersData = [{
       name: "Jordi Valentín",
@@ -101,5 +101,5 @@ router.get('/create/', async function(req, res) {
   res.json({});
 });
 
-
+ */
 module.exports = router;

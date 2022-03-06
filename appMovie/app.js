@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-
+var cors = require ('cors')
 
 require('dotenv').config();
 require('./config/mongoose');
@@ -27,6 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 // Load Routing
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -51,9 +52,7 @@ app.use(function(err, req, res, next) {
 });
 
 function listen() {
-  //if (app.get('env') === 'test') return;
-  //app.listen(port);
-  //console.log('Express app started on port ' + port);
+ 
 }
 
 function connect() {

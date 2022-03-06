@@ -9,6 +9,10 @@ const PedidosSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    calidad: {
+        type: String,
+        required: true
+    },
     fechaEntrega: {
         type: String,
         required: true

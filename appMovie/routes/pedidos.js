@@ -10,7 +10,8 @@ const auth = require('../middlewares/auth')
 
 router.post('/', auth, async function(req, res, next) {
 
-    const {idUser, idMovie} = req.body;
+    const {idMovie, calidad, fecha} = req.body;
+    const idUser = req.user._id;
     try{
       const movie = await axios.get(`https://api.themoviedb.org/3/movie/${idMovie}?api_key=cea68b520beecac6718820e4ac576c3a`);
       let resultMovie = (movie.data !== null) ? movie.data: {};
@@ -21,11 +22,11 @@ router.post('/', auth, async function(req, res, next) {
       }
     let fechaEntrega = new Date();
     let fechaDevolucion = new Date(fechaEntrega);   
-    fechaDevolucion.setDate(fechaDevolucion.getDate()+2);
+    fechaDevolucion.setDate(fechaDevolucion.getDate()+ fecha);
   
     // Guardo los datos
 
-    const pedido = await pedidosModels.create({idUser: idUser, idMovie: idMovie, fechaEntrega: fechaEntrega, fechaDevolucion: fechaDevolucion})
+    const pedido = await pedidosModels.create({idUser: idUser, idMovie: idMovie, calidad: calidad, fechaEntrega: fechaEntrega, fechaDevolucion: fechaDevolucion})
     
     // Respondo ok o ko
 
@@ -36,6 +37,10 @@ router.post('/', auth, async function(req, res, next) {
     } 
 });
      // fecha de entrega y evolucion
- 
+     router.get('/user', auth, async (req, res, next) => {
+      const pedidos = await pedidosModels.find({ idUser: req.user._id});
+      let resultPedidos = (pedidos !== null) ? pedidos: {};
+      res.status(200).json(resultPedidos);
+  });
   
   module.exports = router;
