@@ -4,7 +4,8 @@ var router = express.Router();
 var pedidosModels = require('../models/pedidosModels');
 var UserModels = require('../models/UserModels');
 const axios = require('axios');
-const auth = require('../middlewares/auth')
+const auth = require('../middlewares/auth');
+const admin = require('../middlewares/admin');
 
 //Get pedidos
 
@@ -42,5 +43,11 @@ router.post('/', auth, async function(req, res, next) {
       let resultPedidos = (pedidos !== null) ? pedidos: {};
       res.status(200).json(resultPedidos);
   });
+
+  router.get('/', [auth, admin], async (req, res, next) => {
+    const pedidos = await pedidosModels.find();
+    let resultPedidos = (pedidos !== null) ? pedidos: {};
+    res.status(200).json(resultPedidos);
+});
   
   module.exports = router;

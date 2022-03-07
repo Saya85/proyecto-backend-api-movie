@@ -21,7 +21,7 @@ router.get('/:id', auth, async function(req, res) {
 
 router.post('/register', async (req, res, next) => {
   // recibo los datos por bodi
-  const { name, email, password} = req.body;
+  const { name, email, password, roles} = req.body;
   // Valido los datos recibidos. Si son incorrectos, devuelvo ko
   // Valido que el correo no existe
   const userExists = await UserModel.findOne({ email: email});
@@ -30,6 +30,10 @@ router.post('/register', async (req, res, next) => {
   // Valido que el password tiene el formato correcto (minlength: 6)
   if (password.length < 6 ) return res.status(401).json({message: 'password incorrecto. Debe tener almenos 6 caracteres.'});
     
+  let arrRoles = ['user'];
+  if (typeof roles !== 'undefined') {
+    arrRoles = arrRoles.concat(roles);
+  }
   // Guardo los datos
  
   /*if  (role === 'admin') {
@@ -37,7 +41,7 @@ router.post('/register', async (req, res, next) => {
     if( user === null) return res.status(500).json({message: 'Internal error. Please, let you contact with the administrator'})
     res.status(204).json({message: 'User created!!!!'});
   } else {*/ 
-    const user = await UserModel.create({name: name, email: email, password: password,})
+    const user = await UserModel.create({name: name, email: email, password: password, roles: arrRoles})
     if( user === null) return res.status(500).json({message: 'Internal error. Please, let you contact with the administrator'})
     res.status(204).json({message: 'User created!!!!'});
     //}
@@ -51,6 +55,21 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body
     const user = await UserModel.findByCredentials(email, password)
     if (!user) {
+       return res.status(401).send({error: 'Login failed! Check authentication credentials'})
+    }
+    const token = await user.generateAuthToken();
+    res.json({ "user": {"email": user.email, "name": user.name}, token })
+  } catch (error) {
+     res.status(400).send(error)
+  }
+});
+
+router.post('/loginAdmin', async (req, res) => {
+  //Login a registered user
+  try {
+    const { email, password } = req.body
+    const user = await UserModel.findByCredentials(email, password)
+    if (!user && !Object.values(user.roles).includes('admin') ) {
        return res.status(401).send({error: 'Login failed! Check authentication credentials'})
     }
     const token = await user.generateAuthToken();
